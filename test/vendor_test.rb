@@ -6,7 +6,7 @@ require './lib/vendor'
 
 
 
-class VendonTest < Minitest::Test
+class ItemTest < Minitest::Test
 
   def test_it_exists
     item1 = Item.new({name: 'Peach', price: "$0.75"})
