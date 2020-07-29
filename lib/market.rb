@@ -50,4 +50,14 @@ class Market
     inventory_hash
   end
 
+  def overstocked_items
+    overstocked = []
+    all_items.each do |item|
+      if total_quantity(item) > 50 && vendors_that_sell(item).count > 1
+        overstocked << item
+      end
+    end
+    overstocked.uniq
+  end
+
 end
