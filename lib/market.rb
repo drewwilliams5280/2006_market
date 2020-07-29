@@ -24,4 +24,30 @@ class Market
     selling_vendors
   end
 
+  def all_items
+    items = []
+    @vendors.each do |vendor|
+      items << vendor.inventory.keys
+    end
+    items.flatten
+  end
+
+  def total_quantity(item)
+    total = 0
+    @vendors.each do |vendor|
+      if vendor.inventory.keys.include?(item)
+        total += vendor.inventory[item]
+      end
+    end
+    total
+  end
+
+  def total_inventory
+    inventory_hash = {}
+    all_items.each do |item|
+      inventory_hash[item] = {quantity: total_quantity(item), vendors: vendors_that_sell(item)}
+    end
+    inventory_hash
+  end
+
 end
