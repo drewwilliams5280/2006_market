@@ -29,7 +29,7 @@ class Market
     @vendors.each do |vendor|
       items << vendor.inventory.keys
     end
-    items.flatten
+    items.flatten.uniq
   end
 
   def total_quantity(item)
@@ -58,6 +58,10 @@ class Market
       end
     end
     overstocked.uniq
+  end
+
+  def sorted_item_list
+    all_items.map {|item| item.name}.sort
   end
 
 end
